@@ -1,0 +1,18 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+.column {
+  width: 960px;
+  display: flex;
+}
+
+.cell {
+  background-color: gray;
+}
+
+.cell:hover {
+  outline: 1px solid white;
+  /* background-color: black; */
+}
