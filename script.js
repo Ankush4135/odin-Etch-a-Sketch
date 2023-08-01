@@ -2,6 +2,11 @@ let grid = 16;
 
 const drawArea = document.querySelector('#sketchContainer');
 const btnResolution = document.querySelector('#resolution');
+const btnBlack = document.querySelector('#Black')
+const btnRandom = document.querySelector('#Random')
+// const btnBlack = document.querySelector('#black')
+
+let drawColor = ""
 
 function createCanvas(){
   let resolution = (250 / grid).toString() + "px";
@@ -19,7 +24,7 @@ function createCanvas(){
       column.appendChild(cell);
       cell.addEventListener(
         'mousemove',() =>{
-          cell.style.backgroundColor = 'black'
+          draw(cell)
         }
       )
     }
@@ -27,6 +32,21 @@ function createCanvas(){
 }
 
 createCanvas();
+
+function draw(cell){
+  if (drawColor === "black")
+    cell.style.backgroundColor = 'black'
+  else if (drawColor === "random")
+    cell.style.backgroundColor = getRandomHexColor()
+  
+  else // default color
+    cell.style.backgroundColor = 'black'
+  
+}
+
+function getRandomHexColor () {
+  return "#" + (Math.floor (Math.random () * 16777215).toString (16).padStart (6, "0"));
+}
 
 btnResolution.onclick = () =>{
   grid = prompt("Enter the grid resolution 1 to 100",16)
@@ -36,4 +56,12 @@ btnResolution.onclick = () =>{
     const removeCanvas = document.querySelector('#sketchContainer > div')
     drawArea.removeChild(removeCanvas)
   }
+}
+
+btnBlack.onclick = () =>{
+  drawColor = "black"
+}
+
+btnRandom.onclick = () =>{
+  drawColor = "random"
 }
